@@ -214,7 +214,7 @@ $ wget https://raw.githubusercontent.com/caddyserver/dist/master/config/Caddyfil
 $ vi /etc/caddy/Caddyfile
 ```
 <details>
-  <summary>contents of <code>Caddyfile</code>save use<code>:wq</code></summary>
+  <summary>contents of <code>Caddyfile</code>use<code>:wq</code>to save</summary>
   
   ```
   # The Caddyfile is an easy way to configure your Caddy web server.
@@ -255,7 +255,7 @@ $ vi /etc/systemd/system/caddy.service
 ```
 
 <details>
-  <summary>contents of <code>caddy.service</code></summary>
+  <summary>contents of <code>caddy.service</code>use<code>:wq</code>to save</summary>
   
   ```
   [Unit]
@@ -325,19 +325,19 @@ $ service caddy restart
 ---
 ## Kcptun
 ```
-useradd -r -d /nonexistent -M -s /usr/sbin/nologin kcptun
-curl -SLO https://github.com/xtaci/kcptun/releases/download/v20200409/kcptun-linux-amd64-20200409.tar.gz
-tar -C /usr/local/bin/ -xf kcptun-linux-amd64-20200409.tar.gz
-mv /usr/local/bin/{client_linux_amd64,kcptun-client}
-mv /usr/local/bin/{server_linux_amd64,kcptun-server}
-chmod 755 /usr/local/bin/kcptun-*
-chown root:root /usr/local/bin/kcptun-*
-mkdir /etc/kcptun
-wget https://github.com/xtaci/kcptun/blob/master/examples/server.json -O /etc/kcptun/server-config.json
-vi /etc/kcptun/server-config.json
+$ useradd -r -d /nonexistent -M -s /usr/sbin/nologin kcptun
+$ curl -SLO https://github.com/xtaci/kcptun/releases/download/v20200409/kcptun-linux-amd64-20200409.tar.gz
+$ tar -C /usr/local/bin/ -xf kcptun-linux-amd64-20200409.tar.gz
+$ mv /usr/local/bin/{client_linux_amd64,kcptun-client}
+$ mv /usr/local/bin/{server_linux_amd64,kcptun-server}
+$ chmod 755 /usr/local/bin/kcptun-*
+$ chown root:root /usr/local/bin/kcptun-*
+$ mkdir /etc/kcptun
+$ wget https://github.com/xtaci/kcptun/blob/master/examples/server.json -O /etc/kcptun/server-config.json
+$ vi /etc/kcptun/server-config.json
 ```
 <details>
-  <summary>contents of <code>server-config.json</code></summary>
+  <summary>contents of <code>server-config.json</code>use<code>:wq</code>to save</summary>
   
   ```
   {
@@ -371,12 +371,12 @@ vi /etc/kcptun/server-config.json
   </details>
 
 ```
-wget https://raw.githubusercontent.com/xtaci/kcptun/master/examples/kcptun.service -O /etc/systemd/system/kcptun.service
-vi /etc/systemd/system/kcptun.service
+$ wget https://raw.githubusercontent.com/xtaci/kcptun/master/examples/kcptun.service -O /etc/systemd/system/kcptun.service
+$ vi /etc/systemd/system/kcptun.service
 ```
 
 <details>
-  <summary>contents of <code>kcptun.service</code></summary>
+  <summary>contents of <code>kcptun.service</code>use<code>:wq</code>to save</summary>
   
   ```
   [Unit]
@@ -412,5 +412,72 @@ $ systemctl enable kcptun
 ```
 
 ---
+## trojan
+run trojan with docker
+```
+$ mkdir /etc/trojan && cd /etc/trojan
+$ mkdir /etc/ssl/trojan
+$ vi /etc/trojan/config.json
+```
+
+<details>
+  <summary>contents of <code>config.json</code>use<code>:wq</code>to save</summary>
+ 
+  ```
+	{
+		"run_type": "server",
+		"local_addr": "0.0.0.0",
+		"local_port": 443,
+		"remote_addr": "127.0.0.1",
+		"remote_port": 80,
+		"password": [
+			"PASSWORD"
+		],
+		"log_level": 1,
+		"ssl": {
+			"cert": "/etc/ssl/trojan/trojan.crt",
+			"key": "/etc/ssl/trojan/trojan.key",
+			"key_password": "",
+			"cipher": "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384",
+			"cipher_tls13": "TLS_AES_128_GCM_SHA256:TLS_CHACHA20_POLY1305_SHA256:TLS_AES_256_GCM_SHA384",
+			"prefer_server_cipher": true,
+			"alpn": [
+				"http/1.1"
+			],
+			"reuse_session": true,
+			"session_ticket": false,
+			"session_timeout": 600,
+			"plain_http_response": "",
+			"curves": "",
+			"dhparam": ""
+		},
+		"tcp": {
+			"prefer_ipv4": false,
+			"no_delay": true,
+			"keep_alive": true,
+			"reuse_port": false,
+			"fast_open": false,
+			"fast_open_qlen": 20
+		},
+		"mysql": {
+			"enabled": false,
+			"server_addr": "127.0.0.1",
+			"server_port": 3306,
+			"database": "trojan",
+			"username": "trojan",
+			"password": ""
+		}
+	}
+  ```
+</details>
+
+```
+$ docker pull trojangfw/trojan
+$ docker run -d --name trojan --restart always --net host -v /etc/ssl/trojan:/etc/ssl/trojan -v /etc/trojan:/config trojangfw/trojan  // add -v the path for cert in host
+```
+
+---
+## shadowsocks
+  
 
 
