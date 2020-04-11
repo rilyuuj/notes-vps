@@ -6,16 +6,16 @@ some configurations before services
 ### set locale
 only for scenario `Minimal Installation`
 ```
-apt-get install locales
-dpkg-reconfigure locales    // choice 158, choice 3
-locale
+$ apt-get install locales
+$ dpkg-reconfigure locales    // choice 158, choice 3
+$ locale
 ```
 ### VIM
 only for Debian Series
 
 change paste mode
 ```
-vim /usr/share/vim/vim81/defaults.vim
+$ vim /usr/share/vim/vim81/defaults.vim
 
 find set mouse
 if has(‘mouse’)
@@ -29,9 +29,9 @@ endif
 ```
 change default editor
 ```
-select-editor   // choice /usr/bin/vim.basic
+$ select-editor   // choice /usr/bin/vim.basic
 or
-update-alternatives --config editor  //choice /usr/bin/vim.basic
+$ update-alternatives --config editor  //choice /usr/bin/vim.basic
 ```
 
 ### apt 
@@ -57,8 +57,8 @@ $ sudo apt upgrade
 ```
 release hold update for kernel
 ```
-sudo apt-mark unhold linux-image-5.3.0-28-generic linux-image-generic-hwe-18.04
-sudo apt update
+$ sudo apt-mark unhold linux-image-5.3.0-28-generic linux-image-generic-hwe-18.04
+$ sudo apt update
 ```
 install tools
 ```
@@ -76,17 +76,17 @@ $ date
 ### rync
 sync file from remote server
 ```
-rsync -Pavz -e "ssh -p 22 -t id_rsa" root@10.10.10.10:/data ~/backup
+$ rsync -Pavz -e "ssh -p 22 -t id_rsa" root@10.10.10.10:/data ~/backup
 ```
 
 ### sync disk size to df
 ```
 $ resize2fs /dev/vda1
 ```
-### filewall
+### Firewall
 install
 ```
-sudo apt-get install ufw
+$ sudo apt-get install ufw
 ```
 enable
 ```
@@ -198,7 +198,33 @@ auto install cert to path edit via `crontab -e`
 ```
 
 ---
-
+## install caddy
+```
+$ apt install curl
+$ curl https://getcaddy.com | bash -s personal
+$ setcap 'cap_net_bind_service=+ep' /usr/local/bin/caddy    //enable service port running >1024
+$ useradd -r -d /var/www -M -s /sbin/nologin caddy    //create system account
+$ mkdir /etc/ssl/caddy
+$ chown -R caddy:root /etc/ssl/caddy
+$ chmod 0770 /etc/ssl/caddy
+$ mkdir -p /var/www/example.com
+$ chown -R caddy:caddy /var/www/
+$ mkdir /etc/caddy
+$ chown -R root:caddy /etc/caddy
+$ vi /usr/local/caddy/Caddyfile
+```
+<details>
+  <summary>contents of <code>Caddyfile</code></summary>
+  ```
+  http://yourdomain.com {
+   root /var/www/example.com
+   gzip
+   log /var/log/caddy.log
+   }
+  ```
+<details>
+ 
+ adf
 
 
 
