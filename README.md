@@ -307,10 +307,12 @@ $ vi /etc/systemd/system/caddy.service
   WantedBy=multi-user.target
   ```
 </details>
+
 if output with `listen tcp :80: bind: permission denied` uncomment follow lines in caddy.service
-> ;CapabilityBoundingSet=CAP_NET_BIND_SERVICE
-> ;AmbientCapabilities=CAP_NET_BIND_SERVICE
-> ;NoNewPrivileges=true
+> CapabilityBoundingSet=CAP_NET_BIND_SERVICE
+> AmbientCapabilities=CAP_NET_BIND_SERVICE
+> NoNewPrivileges=true
+
 ```
 $ systemctl daemon-reload
 $ systemctl start caddy
