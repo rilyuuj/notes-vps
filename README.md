@@ -133,10 +133,10 @@ $ sudo ufw status numbered
 [ 1] 22/tcp                     ALLOW IN    Anywhere
 [ 2] 443/tcp                    ALLOW IN    Anywhere
 [ 3] 2048/tcp                   ALLOW IN    Anywhere
-[ 4] 80                         DENY IN     192.168.111.0/24
+[ 4] 80                         DENY IN     10.10.10.0/24
 $ sudo ufw delete 4
 Deleting:
- deny from 192.168.111.0/24 to any port 80
+ deny from 10.10.10.0/24 to any port 80
 Proceed with operation (y|n)? y
 Rule deleted
 $ sudo ufw delete allow 2048
@@ -190,12 +190,11 @@ need clean occupy port for tcp 80 before issue
 ```
 $ acme.sh --issue --standalone -d your.domain.com -k ec-256
 Cert success.
-$ acme.sh --installcert -d your.domain.com --fullchain-file /etc/ssl/caddy/caddy.crt --key-file /etc/ssl/caddy/caddy.key --ecc //copy  crt&key to path
+$ acme.sh --installcert -d your.domain.com --fullchain-file /etc/ssl/caddy/caddy.crt --key-file /etc/ssl/caddy/caddy.key --ecc //copy crt&key to path
 ```
 auto install cert to path edit via `crontab -e`
-```
-0 3 15 */2 * acme.sh --installcert -d your.domain.com --fullchain-file /etc/ssl/caddy/caddy.crt --key-file /etc/ssl/caddy/caddy.key --ecc && docker caddy restart
-```
+
+> 0 3 15 */2 * acme.sh --installcert -d your.domain.com --fullchain-file /etc/ssl/caddy/caddy.crt --key-file /etc/ssl/caddy/caddy.key --ecc && docker caddy restart
 
 ---
 ## install caddy
@@ -215,7 +214,7 @@ $ wget https://raw.githubusercontent.com/caddyserver/dist/master/config/Caddyfil
 $ vi /etc/caddy/Caddyfile
 ```
 <details>
-  <summary>contents of <code>Caddyfile</code></summary>
+  <summary>contents of <code>Caddyfile</code>save use<code>:wq</code></summary>
   
   ```
   # The Caddyfile is an easy way to configure your Caddy web server.
