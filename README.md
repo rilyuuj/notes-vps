@@ -215,6 +215,7 @@ $ vi /usr/local/caddy/Caddyfile
 ```
 <details>
   <summary>contents of <code>Caddyfile</code></summary>
+  
   ```
   http://yourdomain.com {
    root /var/www/example.com
