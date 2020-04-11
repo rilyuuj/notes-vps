@@ -179,14 +179,14 @@ $ sudo apt-get install docker-ce docker-ce-cli containerd.io
 
 ---
 ## install acme
-get ssl cer/key by acme
+get ssl crt&key by scripts
 ```
 $ sudo apt install socat
 $ sudo curl https://get.acme.sh | sh
 $ export CF_Key="xxxxxxxxxxxxxxxxxxxxxx"
 $ export CF_Email="your@mail.com"
 ```
-need clean occupy port for tcp 80 before issue
+need clean occupy port for `80/tcp` before issue
 ```
 $ acme.sh --issue --standalone -d your.domain.com -k ec-256
 Cert success.
@@ -478,6 +478,38 @@ $ docker run -d --name trojan --restart always --net host -v /etc/ssl/trojan:/et
 
 ---
 ## shadowsocks
-  
+run shadowsocks-libev with docker
+```
+$ mkdir /etc/shadowsocks-libev
+$ cd /etc/shadowsocks-libev
+$ vim /etc/shadowsocks-libev/config.json
+```
 
+<details>
+  <summary>contents of <code>config.json</code>use<code>:wq</code>to save</summary>
+	
+	```
+		{
+		"server":"0.0.0.0",
+		"server_port":1080,
+		"method":"chacha20-ietf-poly1305",
+		"timeout":300,
+		"user":"nobody",
+		"password":"PASSWORD",
+		"nameserver":"8.8.8.8",
+		"mode":"tcp_and_udp",
+		}
+	```
+</details>
 
+```
+$ docker pull teddysun/shadowsocks-libev
+$ docker run -d --name ss-libev --restart always --net host -v /etc/shadowsocks-libev:/etc/shadowsocks-libev teddysun/shadowsocks-libev
+$ docker logs ss-libev
+```
+
+use install version please running follow line
+> $ setcap 'cap_net_bind_service=+ep' /usr/bin/ss-server
+> $ systemctl edit shadowsocks-libev		// edit deamon servive
+
+---
