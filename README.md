@@ -509,7 +509,7 @@ $ docker logs ss-libev
 ```
 
 use install version please running follow line
-> $ setcap 'cap_net_bind_service=+ep' /usr/bin/ss-server
+> $ setcap 'cap_net_bind_service=+ep' /usr/bin/ss-server<br>
 > $ systemctl edit shadowsocks-libev		// edit deamon servive
 
 ---
