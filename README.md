@@ -4,16 +4,16 @@ something for vps
 ## system setting
 some configurations before services
 ### set locale
-for Minimal installation
+only for scenario `Minimal Installation`
 ```
 apt-get install locales
 dpkg-reconfigure locales    // choice 158, choice 3
 locale
 ```
 ### VIM
-only for Debian series
+only for Debian Series
 
-- change paste mode
+change paste mode
 ```
 vim /usr/share/vim/vim81/defaults.vim
 
@@ -27,7 +27,7 @@ if has(‘mouse’)
 set mouse=r
 endif
 ```
-- change default editor
+change default editor
 ```
 select-editor   // choice /usr/bin/vim.basic
 or
@@ -35,18 +35,18 @@ update-alternatives --config editor  //choice /usr/bin/vim.basic
 ```
 
 ### apt 
-- check installed kernel
+check installed kernel
 ```
 $ dpkg -l | grep linux-image
 ii  linux-image-5.3.0-28-generic               5.3.0-28.30~18.04.1                             amd64        Signed kernel image generic
 ii  linux-image-generic-hwe-18.04              5.3.0.28.96                                     amd64        Generic Linux kernel image
 ```
-- check used kernel
+check used kernel
 ```
 $ uname -a
 Linux bionic 5.3.0-28-generic #30~18.04.1-Ubuntu SMP Fri Jan 1 00:00:01 UTC 2000 x86_64 x86_64 x86_64 GNU/Linux
 ```
-- hold update for kernel
+hold update for kernel
 ```
 $ sudo apt-mark hold linux-image-5.3.0-28-generic linux-image-generic-hwe-18.04
 $ dpkg -l | grep linux-image
@@ -55,12 +55,12 @@ hi  linux-image-generic-hwe-18.04              5.3.0.28.96                      
 $ sudo apt update
 $ sudo apt upgrade
 ```
-- release hold update for kernel
+release hold update for kernel
 ```
 sudo apt-mark unhold linux-image-5.3.0-28-generic linux-image-generic-hwe-18.04
 sudo apt update
 ```
-- install tools
+install tools
 ```
 $ sudo apt update
 $ apt install vim curl git socat telnet ufw
@@ -127,7 +127,7 @@ To                         Action      From
 2048/tcp                   ALLOW IN    Anywhere  
 80                         DENY IN     192.168.111.0/24
 ```
-del rule
+del rules
 ```
 $ sudo ufw status numbered
 [ 1] 22/tcp                     ALLOW IN    Anywhere
@@ -154,7 +154,7 @@ $ sudo ufw reset   // del all rules and disable
 ```
 ---
 ## install docker
-please refer [docker docs](https://docs.docker.com/engine/install/)
+please refer [docker docs](https://docs.docker.com/engine/install/) for different os
 ```
 $ sudo apt-get remove docker docker-engine docker.io containerd runc
 $ sudo apt update
