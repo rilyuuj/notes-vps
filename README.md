@@ -165,7 +165,7 @@ $ sudo apt-get install \
     gnupg-agent \
     software-properties-common
 $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-$ apt-key fingerprint 0EBFCD88 
+$ sudo apt-key fingerprint 0EBFCD88 
 pub   rsa4096 2017-02-22 [SCEA]
       9DC8 5822 9FC7 DD38 854A  E2D8 8D81 803C 0EBF CD88
 uid           [ unknown] Docker Release (CE deb) <docker@docker.com>
@@ -342,7 +342,7 @@ $ vi /etc/kcptun/server-config.json
   ```
   {
         "listen": ":2000",
-        "target": "127.0.0.1:9999",
+        "target": "127.0.0.1:1080",
         "key": "PASSWORD",
         "crypt": "aes-128",
         "mode": "fast3",
