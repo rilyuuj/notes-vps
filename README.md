@@ -311,8 +311,8 @@ $ vi /etc/systemd/system/caddy.service
 </details>
 
 if output with `listen tcp :80: bind: permission denied` uncomment follow lines in caddy.service
-> CapabilityBoundingSet=CAP_NET_BIND_SERVICE
-> AmbientCapabilities=CAP_NET_BIND_SERVICE
+> CapabilityBoundingSet=CAP_NET_BIND_SERVICE<br>
+> AmbientCapabilities=CAP_NET_BIND_SERVICE<br>
 > NoNewPrivileges=true
 
 ```
