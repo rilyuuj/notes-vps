@@ -222,7 +222,7 @@ $ vi /usr/local/caddy/Caddyfile
    log /var/log/caddy.log
    }
   ```
-<details>
+</details>
  
  adf
 
