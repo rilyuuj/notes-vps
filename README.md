@@ -84,7 +84,7 @@ rsync -Pavz -e "ssh -p 22 -t id_rsa" root@10.10.10.10:/data ~/backup
 $ resize2fs /dev/vda1
 ```
 ### filewall
-install ufw
+install
 ```
 sudo apt-get install ufw
 ```
@@ -133,8 +133,8 @@ $ sudo ufw status numbered
 [ 1] 22/tcp                     ALLOW IN    Anywhere
 [ 2] 443/tcp                    ALLOW IN    Anywhere
 [ 3] 2048/tcp                   ALLOW IN    Anywhere
-[ 3] 80                         DENY IN     192.168.111.0/24
-$ sudo ufw delete 3
+[ 4] 80                         DENY IN     192.168.111.0/24
+$ sudo ufw delete 4
 Deleting:
  deny from 192.168.111.0/24 to any port 80
 Proceed with operation (y|n)? y
@@ -188,13 +188,13 @@ $ export CF_Email="your@mail.com"
 ```
 need clean occupy port for tcp 80 before issue
 ```
-$ acme.sh --issue --standalone -d nwnd.cclimber.tk -k ec-256
+$ acme.sh --issue --standalone -d your.domain.com -k ec-256
 Cert success.
-$ acme.sh --installcert -d your.domain.com --fullchain-file /etc/ssl/trojan/trojan.crt --key-file /etc/ssl/trojan/trojan.key --ecc //install cert&prt key to path
+$ acme.sh --installcert -d your.domain.com --fullchain-file /etc/ssl/caddy/caddy.crt --key-file /etc/ssl/caddy/caddy.key --ecc //copy  crt&key to path
 ```
 auto install cert to path edit via `crontab -e`
 ```
-0 3 15 */2 * acme.sh --installcert -d your.domain.com --fullchain-file /etc/ssl/trojan/trojan.cer --key-file /etc/ssl/trojan/trojan.key --ecc && docker trojan restart
+0 3 15 */2 * acme.sh --installcert -d your.domain.com --fullchain-file /etc/ssl/caddy/caddy.crt --key-file /etc/ssl/caddy/caddy.key --ecc && docker caddy restart
 ```
 
 ---
