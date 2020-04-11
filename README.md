@@ -202,7 +202,7 @@ auto install cert to path edit via `crontab -e`
 ```
 $ apt install curl
 $ curl https://getcaddy.com | bash -s personal
-$ setcap 'cap_net_bind_service=+ep' /usr/local/bin/caddy    //enable service port running >1024
+$ setcap 'cap_net_bind_service=+ep' /usr/local/bin/caddy    //enable service port running <1024
 $ useradd -r -d /var/www -M -s /sbin/nologin caddy    //create system account
 $ mkdir /etc/ssl/caddy
 $ chown -R caddy:root /etc/ssl/caddy
@@ -248,7 +248,7 @@ $ vi /etc/caddy/Caddyfile
 
 ```
 $ chown caddy:caddy /etc/caddy/Caddyfile
-$ chmod 444 /etc/caddy/Caddyfile		//block rewrite config file
+$ chmod 444 /etc/caddy/Caddyfile		//block rewrite config
 $ touch /var/log/caddy.log
 $ chown caddy:caddy /var/log/caddy.log
 $ wget https://github.com/caddyserver/dist/blob/master/init/caddy.service -O /etc/systemd/system/caddy.service
@@ -323,7 +323,95 @@ $ systemctl enable caddy
 $ service caddy restart
 ```
 
- adf
+---
+## Kcptun
+```
+useradd -r -d /nonexistent -M -s /usr/sbin/nologin kcptun
+curl -SLO https://github.com/xtaci/kcptun/releases/download/v20200409/kcptun-linux-amd64-20200409.tar.gz
+tar -C /usr/local/bin/ -xf kcptun-linux-amd64-20200409.tar.gz
+mv /usr/local/bin/{client_linux_amd64,kcptun-client}
+mv /usr/local/bin/{server_linux_amd64,kcptun-server}
+chmod 755 /usr/local/bin/kcptun-*
+chown root:root /usr/local/bin/kcptun-*
+mkdir /etc/kcptun
+wget https://github.com/xtaci/kcptun/blob/master/examples/server.json -O /etc/kcptun/server-config.json
+vi /etc/kcptun/server-config.json
+```
+<details>
+  <summary>contents of <code>server-config.json</code></summary>
+  
+  ```
+  {
+        "listen": ":2000",
+        "target": "127.0.0.1:9999",
+        "key": "PASSWORD",
+        "crypt": "aes-128",
+        "mode": "fast3",
+        "mtu": 1400,
+        "sndwnd": 2048,
+        "rcvwnd": 2048,
+        "datashard": 10,
+        "parityshard": 3,
+        "dscp": 46,
+        "nocomp": true,
+        "acknodelay": false,
+        "nodelay": 1,
+        "interval": 40,
+        "resend": 2,
+        "nc": 1,
+        "sockbuf": 16777217,
+        "smuxver": 1,
+        "smuxbuf": 16777217,
+        "streambuf": 2097152,
+        "keepalive": 10,
+        "pprof":false,
+        "quiet":false,
+        "tcp":false
+  }
+  ```
+  </details>
 
+```
+wget https://raw.githubusercontent.com/xtaci/kcptun/master/examples/kcptun.service -O /etc/systemd/system/kcptun.service
+vi /etc/systemd/system/kcptun.service
+```
+
+<details>
+  <summary>contents of <code>kcptun.service</code></summary>
+  
+  ```
+  [Unit]
+  Description=kcptun
+  Wants=network.target
+  After=syslog.target network-online.target
+  
+  [Service]
+  Type=simple
+  User=kcptun
+  Group=kcptun
+  CapabilityBoundingSet=CAP_NET_BIND_SERVICE
+  AmbientCapabilities=CAP_NET_BIND_SERVICE
+  NoNewPrivileges=true
+  Environment=GOGC=20
+  ExecStart=/usr/local/bin/kcptun-server -c /etc/kcptun/server-config.json
+  Restart=on-failure
+  RestartSec=10
+  KillMode=process
+  LimitNOFILE=65536
+  
+  [Install]
+  WantedBy=multi-user.target
+  ```
+  </details>
+  
+```
+$ systemctl daemon-reload
+$ touch /var/log/kcptun.log
+$ chown kcptun:kcptun /var/log/kcptun.log
+$ systemctl restart kcptun
+$ systemctl enable kcptun
+```
+
+---
 
 
