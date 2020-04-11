@@ -113,7 +113,7 @@ Description: OpenSSH is a free implementation of the Secure Shell protocol.
 Port:
   22/tcp
 $ sudo ufw allow 'Nginx HTTPS'
-$ sudo ufw deny from 192.168.111.0/24 to any port 80
+$ sudo ufw deny from 10.10.10.0/24 to any port 80
 $ ufw status verbose
 Status: active
 Logging: on (low)
@@ -125,7 +125,7 @@ To                         Action      From
 22/tcp                     ALLOW IN    Anywhere
 443/tcp                    ALLOW IN    Anywhere
 2048/tcp                   ALLOW IN    Anywhere  
-80                         DENY IN     192.168.111.0/24
+80                         DENY IN     10.10.10.0/24
 ```
 del rules
 ```
