@@ -245,6 +245,7 @@ $ vi /etc/caddy/Caddyfile
   # https://caddyserver.com/docs/caddyfile
   ```
 </details>
+
 ```
 $ chown caddy:caddy /etc/caddy/Caddyfile
 $ chmod 444 /etc/caddy/Caddyfile		//block rewrite config file
@@ -253,6 +254,7 @@ $ chown caddy:caddy /var/log/caddy.log
 $ wget https://github.com/caddyserver/dist/blob/master/init/caddy.service -O /etc/systemd/system/caddy.service
 $ vi /etc/systemd/system/caddy.service
 ```
+
 <details>
   <summary>contents of <code>caddy.service</code></summary>
   
