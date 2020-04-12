@@ -500,6 +500,7 @@ $ vim /etc/shadowsocks-libev/config.json
 	"mode":"tcp_and_udp",
 	}
 	```
+
 </details>
 
 ```
@@ -555,6 +556,7 @@ $ vi /etc/v2ray/config.json
 	]
 	}
 	```
+	
 </details>
 
 ```
@@ -583,6 +585,7 @@ modify the caddy config
   	  }
 	}
 	```
+	
 </details>
 restart the caddy service
 
