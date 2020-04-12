@@ -523,6 +523,7 @@ $ vi /etc/v2ray/config.json
 
 <details>
   <summary>paste content to<code>config.json</code></summary>
+	
 	```
 	{
 	"inbounds":[
@@ -561,6 +562,7 @@ $ docker pull v2ray/official
 $ docker run -d --name v2ray --restart always -v /etc/v2ray:/etc/v2ray --net host v2ray/official  v2ray -config=/etc/v2ray/config.json
 $ docker logs v2ray
 ```
+
 modify the caddy config
 <details>
   <summary>content of<code>Caddyfile</code></summary>
@@ -583,6 +585,7 @@ modify the caddy config
 	```
 </details>
 restart the caddy service
+
 ```
 $ systemctl restart caddy
 ```
