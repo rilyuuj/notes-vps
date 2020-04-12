@@ -524,7 +524,6 @@ $ vi /etc/v2ray/config.json
 <details>
   <summary>paste content to<code>config.json</code></summary>
 	
-	
 	{
 	"inbounds":[
 		{
@@ -554,8 +553,6 @@ $ vi /etc/v2ray/config.json
 		}
 	]
 	}
-	```
-	
 </details>
 
 ```
@@ -568,7 +565,6 @@ modify the caddy config
 <details>
   <summary>content of<code>Caddyfile</code></summary>
 	
-	```
 	mydomain.me:80 {
   	  redir https://mydomain.me{url}
 	}
@@ -582,9 +578,7 @@ modify the caddy config
     	  websocket
     	  header_upstream -Origin
   	  }
-	}
-	```
-	
+	}	
 </details>
 restart the caddy service
 
