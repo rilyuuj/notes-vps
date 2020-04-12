@@ -488,19 +488,18 @@ $ vim /etc/shadowsocks-libev/config.json
 <details>
   <summary>contents of <code>config.json</code>use<code>:wq</code>to save</summary>
 	
-	```
-	{
-	"server":"0.0.0.0",
-	"server_port":1080,
-	"method":"chacha20-ietf-poly1305",
-	"timeout":300,
-	"user":"nobody",
-	"password":"PASSWORD",
-	"nameserver":"8.8.8.8",
-	"mode":"tcp_and_udp",
-	}
-	```
-
+  ```
+  {
+  "server":"0.0.0.0",
+  "server_port":1080,
+  "method":"chacha20-ietf-poly1305",
+  "timeout":300,
+  "user":"nobody",
+  "password":"PASSWORD",
+  "nameserver":"8.8.8.8",
+  "mode":"tcp_and_udp",
+  }
+  ```
 </details>
 
 ```
@@ -525,7 +524,7 @@ $ vi /etc/v2ray/config.json
 <details>
   <summary>paste content to<code>config.json</code></summary>
 	
-	```
+	
 	{
 	"inbounds":[
 		{
