@@ -556,8 +556,8 @@ $ vi /etc/v2ray/config.json
 </details>
 
 ```
-$ docker pull v2ray/official
-$ docker run -d --name v2ray --restart always -v /etc/v2ray:/etc/v2ray --net host v2ray/official  v2ray -config=/etc/v2ray/config.json
+$ docker pull v2fly/v2fly-core
+$ docker run -d --name v2ray --restart always -v /etc/v2ray:/etc/v2ray -v /var/log/v2ray:/var/log/v2ray --net host v2fly/v2fly-core v2ray -config=/etc/v2ray/config.json
 $ docker logs v2ray
 ```
 
