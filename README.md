@@ -69,7 +69,7 @@ $ apt install vim curl git socat telnet ufw
 ### sync time from hardware to system
 ```
 $ sudo hwclock
-$ sudo hwclock –hctosys
+$ sudo hwclock –-hctosys
 $ date
 ```
 
