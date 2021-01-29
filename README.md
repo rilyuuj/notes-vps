@@ -63,7 +63,7 @@ $ sudo apt update
 install tools
 ```
 $ sudo apt update
-$ apt install vim curl git socat telnet ufw
+$ apt install sudo vim curl git socat telnet ufw
 ```
 
 ### sync time from hardware to system
