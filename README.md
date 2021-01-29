@@ -66,6 +66,42 @@ $ sudo apt update
 $ apt install sudo vim curl git socat telnet ufw
 ```
 
+### create swap
+```
+$ sudo swapon --show
+$ free -m
+$ sudo dd if=/dev/zero of=/swapfile bs=1M count=1024
+1024+0 records in
+1024+0 records out
+1073741824 bytes (1.1 GB, 1.0 GiB) copied, 2.32912 s, 461 MB/s
+$ ls -lar /swapfile
+-rw-r--r-- 1 root root 1073741824 Jan 29 10:03 /swapfile
+$ sudo chmod 600 /swapfile
+$ ls -lar /swapfile
+-rw------- 1 root root 1073741824 Jan 29 10:03 /swapfile
+$ mkswap /swapfile
+Setting up swapspace version 1, size = 1024 MiB (1073737728 bytes)
+no label, UUID=e2654e61-b327-4e46-6642-12dae290c110
+$ free -m
+              total        used        free      shared  buff/cache   available
+Mem:            474          59          15           7         399         395
+Swap:             0           0           0
+$ sudo swapon /swapfile
+$ free -m
+              total        used        free      shared  buff/cache   available
+Mem:            474          62          10           7         401         392
+Swap:          1023           0        1023
+$ sudo vi /etc/fstab
+/swapfile swap swap defaults 0 0
+$ swapon --show
+NAME      TYPE  SIZE USED PRIO
+/swapfile file 1024M 780K   -2
+$ free -h
+              total        used        free      shared  buff/cache   available
+Mem:          474Mi        60Mi        13Mi       7.0Mi       400Mi       394Mi
+Swap:         1.0Gi       0.0Ki       1.0Gi
+```
+
 ### sync time from hardware to system
 ```
 $ sudo hwclock
