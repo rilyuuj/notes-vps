@@ -112,6 +112,9 @@ $ date
 ### rync
 sync file from remote server
 ```
+make sure rysnc installed on both side
+$ sudo apt install rsync 		# yum install rsync (Centos7)
+$
 $ rsync -Pavz -e "ssh -p 22 -t id_rsa" root@10.10.10.10:/data ~/backup
 ```
 
