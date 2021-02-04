@@ -60,10 +60,10 @@ release hold update for kernel
 $ sudo apt-mark unhold linux-image-5.3.0-28-generic linux-image-generic-hwe-18.04
 $ sudo apt update
 ```
-install tools
+install common tools
 ```
 $ sudo apt update
-$ apt install sudo vim curl git socat telnet ufw
+$ apt install sudo vim curl git socat telnet ufw net-tools
 ```
 
 ### create swap
