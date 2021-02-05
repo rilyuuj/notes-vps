@@ -60,6 +60,23 @@ release hold update for kernel
 $ sudo apt-mark unhold linux-image-5.3.0-28-generic linux-image-generic-hwe-18.04
 $ sudo apt update
 ```
+install latest kernel and enable bbr
+```
+$ sudo nano /etc/apt/sources.list
+ 	//insert following line to end of file sources.list
+deb http://deb.debian.org/debian buster-backports main
+$ sudo apt update && sudo apt -t buster-backports install linux-image-amd64
+$ sudo nano /etc/sysctl.conf
+	//insert following line to end of file sysctl.conf
+net.core.default_qdisc=fq
+net.ipv4.tcp_congestion_control=bbr
+$ sudo reboot
+$ lsmod | grep bbr 	//check bbr is open
+tcp_bbr                20480  8
+$ lsmod | grep fq
+sch_fq                 20480  2
+```
+
 install common tools
 ```
 $ sudo apt update
