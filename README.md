@@ -255,7 +255,7 @@ $ acme.sh --issue --standalone -d your.domain.com -k ec-256
 Cert success.
 $ acme.sh --installcert -d your.domain.com --fullchain-file /etc/ssl/caddy/caddy.crt --key-file /etc/ssl/caddy/caddy.key --ecc //copy crt&key to path
 ```
-get ssl crt&key with api token
+install acme & get ecc crt&key with api token
 ```
 $ sudo curl https://get.acme.sh | sh
 $ export CF_Token="xxxxxxxxxxxxxxxxxxxxxx"  // cloudflare: My Profile --> API tokens --> Create token
@@ -328,7 +328,7 @@ $ acme.sh --issue -d 二级域名.你的域名.com -w /home/vpsadmin/www/webpage
 [Wed 30 Dec 2022 15:22:51 AM EST] Le_LinkCert='https://acme-v02.api.letsencrypt.org/acme/cert/vsxvk0oldnuobe51ayxz4dms62sk2dwmw9zhuw'
 [Wed 30 Dec 2022 15:22:51 AM EST] Cert success.
 -----BEGIN CERTIFICATE-----
-sxlYqPvWreKgD5b8JyOQX0Yg2MLoRUoDyqVkd31PthIiwzdckoh5eD3JU7ysYBtN
+sxRYqPvWreKgD5b8JyOQX0Yg2MLoRUoDyqVkd31PthIiwzdckoh5eD3JU7ysYBtN
 cTFK4LGOfjqi8Ks87EVJdK9IaSAu7ZC6h5to0eqpJ5PLhaM3e6yJBbHmYA8w1Smp
 wAb3tdoHZ9ttUIm9CrSzvDBt6BBT6GqYdDamMyCYBLooMyDEM4CUFsOzCRrEqqvC
 2mTTEmhvpojo5rhdTSJxibozyNWTGwoTj0v9pTUeQcGqLIzqi4DowjBHD5guwRid
@@ -379,7 +379,7 @@ $ acme.sh --renew -d 二级域名.你的域名.com --ecc --force
 [Wed 30 Dec 2022 15:23:58 AM EST] Success
 [Wed 30 Dec 2022 15:23:58 AM EST] Verify finished, start to sign.
 [Wed 30 Dec 2022 15:23:58 AM EST] Lets finalize the order.
-[Wed 30 Dec 2022 15:23:58 AM EST] Le_OrderFinalize='https://acme-v02.api.letsencrypt.org/acme/finalize/490205996/7730242872'
+[Wed 30 Dec 2022 15:23:58 AM EST] Le_OrderFinalize='https://acme-v02.api.letsencrypt.org/acme/finalize/490205997/7730242873'
 [Wed 30 Dec 2022 15:23:59 AM EST] Downloading cert.
 [Wed 30 Dec 2022 15:23:59 AM EST] Le_LinkCert='https://acme-v02.api.letsencrypt.org/acme/cert/vsxvk0oldnuobe51ayxz4dms62sk2dwmw9zhuw'
 [Wed 30 Dec 2022 15:23:59 AM EST] Cert success.
@@ -418,11 +418,11 @@ yiLKcBFc5H7dgJCImo7us7aJeftC44uWkWE=
 $ acme.sh --list
 Main_Domain            KeyLength   SAN_Domains  CA                Created                           Renew
 二级域名.你的域名.com    "ec-256"   no            LetsEncrypt.org   Wed 30 Dec 2022 15:22:51 AM EST   Wed 30 Dec 2022 15:24:00 AM EST
-$ docker caddy restart
+$ service caddy restart
 ```
 auto install cert to path edit via `crontab -e`
 
-> 0 3 15 */2 * acme.sh --installcert -d your.domain.com --fullchain-file /etc/ssl/caddy/caddy.crt --key-file /etc/ssl/caddy/caddy.key --ecc && docker caddy restart
+> 0 3 15 */2 * acme.sh --installcert -d your.domain.com --fullchain-file /etc/ssl/caddy/caddy.crt --key-file /etc/ssl/caddy/caddy.key --ecc && service caddy restart
 
 
 ---
