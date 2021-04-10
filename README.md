@@ -799,6 +799,13 @@ $ vi /etc/v2ray/config.json
 	]
 	}
 </details>
+check the config format is correct
+```
+$ /usr/bin/v2ray/v2ray -test -config /etc/v2ray/config.json
+V2Ray v3.15 (die Commanderin) 20180329
+An unified platform for anti-censorship.
+Configuration OK.
+```
 
 ```
 $ docker pull v2fly/v2fly-core
