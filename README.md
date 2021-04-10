@@ -360,6 +360,7 @@ yiLKcBFc5H7dgJCImo7us7aJeftC44uWkPM=
 $ acme.sh --install-cert -d 二级域名.你的域名.com --ecc \
             --fullchain-file ~/xray_cert/xray.crt \
             --key-file ~/xray_cert/xray.key
+$ chmod +r ~/xray_cert/xray.key
 ```
 
 force renew cert for your domain
