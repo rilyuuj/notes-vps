@@ -420,6 +420,20 @@ Main_Domain            KeyLength   SAN_Domains  CA                Created       
 二级域名.你的域名.com    "ec-256"   no            LetsEncrypt.org   Wed 30 Dec 2022 15:22:51 AM EST   Wed 30 Dec 2022 15:24:00 AM EST
 $ service caddy restart
 ```
+
+Revoke and remove certificates
+```
+$ acme.sh --revoke -d 二级域名.你的域名.com --ecc
+[Sat 30 Jan 2023 10:21:44 AM EST] Try domain key first.
+[Sat 30 Jan 2023 15:21:44 AM EST] Revoke success.
+$ acme.sh --remove -d 二级域名.你的域名.com --ecc
+[Sat 30 Jan 2023 10:22:01 AM EST] 二级域名.你的域名.com is removed, the key and cert files are in /home/vpsadmin/.acme.sh/二级域名.你的域名.com_ecc
+[Sat 30 Jan 2023 10:22:01 AM EST] You can remove them by yourself.
+$ acme.sh --list
+Main_Domain     KeyLength       SAN_Domains     CA      Created Renew
+
+```
+
 auto install cert to path edit via `crontab -e`
 
 > 0 3 15 */2 * acme.sh --installcert -d your.domain.com --fullchain-file /etc/ssl/caddy/caddy.crt --key-file /etc/ssl/caddy/caddy.key --ecc && service caddy restart
