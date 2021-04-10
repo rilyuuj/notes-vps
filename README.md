@@ -799,6 +799,7 @@ $ vi /etc/v2ray/config.json
 	]
 	}
 </details>
+
 check the config format is correct
 ```
 $ /usr/bin/v2ray/v2ray -test -config /etc/v2ray/config.json
