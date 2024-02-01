@@ -7,7 +7,7 @@ some configurations before services
 only for scenario `Minimal Installation`
 ```
 $ apt-get install locales
-$ dpkg-reconfigure locales    // choice 158, choice 3
+$ dpkg-reconfigure locales    // choice 158, choice 3 en_US.UTF-8 UTF-8
 $ locale
 ```
 ### VIM
