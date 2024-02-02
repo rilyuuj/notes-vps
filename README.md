@@ -842,6 +842,14 @@ restart the caddy service
 
 ```
 $ systemctl restart caddy
+
+
 ```
 
 ---
+## shadowsocks-rust
+run shadowsocks-rust with docker
+```
+$ docker pull ghcr.io/shadowsocks/ssserver-rust:latest
+```
+
