@@ -15,7 +15,7 @@ only for Debian Series
 
 change paste mode
 ```
-$ vim /usr/share/vim/vim81/defaults.vim
+$ vim /usr/share/vim/vim$version/defaults.vim
 
 find set mouse
 if has(‘mouse’)
@@ -66,11 +66,19 @@ $ sudo nano /etc/apt/sources.list
  	//insert following line to end of file sources.list
 deb http://deb.debian.org/debian buster-backports main
 $ sudo apt update && sudo apt -t buster-backports install linux-image-amd64
-$ sudo nano /etc/sysctl.conf
-	//insert following line to end of file sysctl.conf
+$ sysctl net.ipv4.tcp_available_congestion_control    //check available congestion control algorithms
+net.ipv4.tcp_available_congestion_control = reno cubic
+$ sysctl net.ipv4.tcp_congestion_control    //check the current congestion control algorithm used in your system
+net.ipv4.tcp_congestion_control = cubic
+$ sudo nano /etc/sysctl.conf    //insert following line to end of file sysctl.conf
 net.core.default_qdisc=fq
 net.ipv4.tcp_congestion_control=bbr
+$ sysctl -p    //refresh your configuration
+net.core.default_qdisc = fq
+net.ipv4.tcp_congestion_control = bbr
 $ sudo reboot
+$ sysctl net.ipv4.tcp_congestion_control    //Verify if BBR is enabled in your system
+net.ipv4.tcp_congestion_control = bbr
 $ lsmod | grep bbr 	//check bbr is open
 tcp_bbr                20480  8
 $ lsmod | grep fq
