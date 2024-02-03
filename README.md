@@ -851,5 +851,7 @@ $ systemctl restart caddy
 run shadowsocks-rust with docker
 ```
 $ docker pull ghcr.io/shadowsocks/ssserver-rust:latest
+$ openssl rand -base64 32   //generate password
+8zr9/ISH++Z2DbMFDWyA7asIIk3KtKQkX90FpKNOJj0=
 ```
 
