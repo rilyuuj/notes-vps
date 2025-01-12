@@ -875,10 +875,10 @@ $ cat config.json
 </details>
 
 ```
-$ docker run -d --name ss-rust --restart always --net host -v /etc/shadowsocks-rust:/etc/shadowsocks-rust ghcr.io/shadowsocks/ssserver-rust
+$ docker run -d --name ss-rust --restart always --net host -v /etc/shadowsocks-rust:/etc/shadowsocks-rust -dit ghcr.io/shadowsocks/ssserver-rust:latest
 $ docker ps -as
 ONTAINER ID   IMAGE                               COMMAND                  CREATED         STATUS        PORTS     NAMES     SIZE
-f1132a207b1   ghcr.io/shadowsocks/ssserver-rust   "docker-entrypoint.s…"   1 minutes    Up 0 secound               ss-rust   54B (virtual 13MB)
+f1132a207b1   ghcr.io/shadowsocks/ssserver-rust   "docker-entrypoint.s…"   1 minutes ago   Up 0 seconds            ss-rust   0B (virtual 13MB)
 $ docker log ss-rust
 ```
 tbc
