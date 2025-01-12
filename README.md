@@ -852,6 +852,30 @@ run shadowsocks-rust with docker
 ```
 $ docker pull ghcr.io/shadowsocks/ssserver-rust:latest
 $ openssl rand -base64 32   //generate password
-8zr9/ISH++Z2DbMFDWyA7asIIk3KtKQkX90FpKNOJj0=
+0zr6/ISH++Z1DbMFDWyA7asIIk4KtKQkX90FpKNOJj0=
+$ cat config.json
 ```
-
+<details>
+  <summary>contents of <code>config.json</code>use<code>:wq</code>to save</summary>
+	
+  ```
+  {
+  "server":"0.0.0.0",
+  "server_port":1080,
+  "method":"2022-blake3-chacha20-poly1305",
+  "fast_open":false,
+  "timeout":300,
+  "user":"nobody",
+  "password":"PASSWORD",
+  "nameserver":"8.8.8.8",
+  "mode":"tcp_and_udp",
+  }
+  ```
+</details>
+```
+$ docker run -d --name ss-rust --restart always --net host -v /etc/shadowsocks-rust:/etc/shadowsocks-rust ghcr.io/shadowsocks/ssserver-rust
+$ docker ps -as
+ONTAINER ID   IMAGE                               COMMAND                  CREATED         STATUS        PORTS     NAMES     SIZE
+f1132a207b1   ghcr.io/shadowsocks/ssserver-rust   "docker-entrypoint.s…"   1 minutes    Up 0 secound               ss-rust   54B (virtual 13MB)
+$ docker log ss-rust
+```
