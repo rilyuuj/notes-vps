@@ -855,6 +855,7 @@ $ openssl rand -base64 32   //generate password
 0zr6/ISH++Z1DbMFDWyA7asIIk4KtKQkX90FpKNOJj0=
 $ cat config.json
 ```
+
 <details>
   <summary>contents of <code>config.json</code>use<code>:wq</code>to save</summary>
 	
@@ -872,6 +873,7 @@ $ cat config.json
   }
   ```
 </details>
+
 ```
 $ docker run -d --name ss-rust --restart always --net host -v /etc/shadowsocks-rust:/etc/shadowsocks-rust ghcr.io/shadowsocks/ssserver-rust
 $ docker ps -as
@@ -879,3 +881,4 @@ ONTAINER ID   IMAGE                               COMMAND                  CREAT
 f1132a207b1   ghcr.io/shadowsocks/ssserver-rust   "docker-entrypoint.s…"   1 minutes    Up 0 secound               ss-rust   54B (virtual 13MB)
 $ docker log ss-rust
 ```
+tbc
