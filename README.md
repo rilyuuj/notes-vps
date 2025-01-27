@@ -881,4 +881,18 @@ ONTAINER ID   IMAGE                               COMMAND                  CREAT
 f1132a207b1   ghcr.io/shadowsocks/ssserver-rust   "docker-entrypoint.s…"   1 minutes ago   Up 0 seconds            ss-rust   0B (virtual 13MB)
 $ docker log ss-rust
 ```
+## 3x-ui
+install 3x-ui panel for xray,v2ray or ss
+```
+$ mkdir -p /etc/x-ui/db /etc/x-ui/cert
+$ docker pull ghcr.io/mhsanaei/3x-ui:latest
+$ docker run -itd \
+     -e XRAY_VMESS_AEAD_FORCED=false \
+     -v /etc/xui/db/:/etc/x-ui \
+     -v /etc/xui/cert/:/root/cert \
+     --network=host \
+     --restart=unless-stopped \
+     --name 3x-ui \
+     ghcr.io/mhsanaei/3x-ui:latest
+```
 tbc
