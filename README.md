@@ -895,4 +895,5 @@ $ docker run -itd \
      --name 3x-ui \
      ghcr.io/mhsanaei/3x-ui:latest
 ```
+default panel pass is admin/admin
 tbc
